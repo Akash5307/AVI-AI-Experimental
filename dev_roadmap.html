@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Companion Development Roadmap</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .phase {
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        .phase-header {
+            padding: 20px 30px;
+            font-weight: bold;
+            font-size: 1.4em;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .phase1 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .phase2 { background: linear-gradient(135deg, #5f27cd, #341f97); }
+        .phase3 { background: linear-gradient(135deg, #00d2d3, #54a0ff); }
+        .phase4 { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+        .phase5 { background: linear-gradient(135deg, #ffa502, #ff6348); }
+        
+        .phase-content {
+            padding: 30px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #4facfe;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+        
+        .step h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .step-number {
+            background: #4facfe;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .timeline {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .timeline h3 {
+            margin: 0 0 20px 0;
+            color: #d63031;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-icon {
+            background: #d63031;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        
+        .resources {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .resources h3 {
+            margin: 0 0 20px 0;
+            color: #2d3436;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .resource-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .resource-card h4 {
+            margin: 0 0 10px 0;
+            color: #2d3436;
+        }
+        
+        .clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable:hover {
+            transform: scale(1.02);
+        }
+        
+        @media (max-width: 768px) {
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-icon {
+                margin: 0 0 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Development Roadmap</h1>
+            <p>Step-by-step guide to build your AI Companion Platform</p>
+        </div>
+        
+        <div class="content">
+            <!-- Phase 1: Foundation -->
+            <div class="phase">
+                <div class="phase-header phase1">
+                    <span>Phase 1: Foundation Setup (Week 1-2)</span>
+                    <span>🏗️</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step">
+                        <h4><span class="step-number">1</span>Project Setup & Environment</h4>
+                        <p>Initialize your development environment with all necessary tools</p>
+                        <div class="code-block">
+# Create project structure
+mkdir ai-companion-platform
+cd ai-companion-platform
+
+# Initialize frontend (React + TypeScript)
+npx create-react-app frontend --template typescript
+cd frontend
+npm install socket.io-client three @types/three tailwindcss
+
+# Initialize backend (Node.js + Express)
+cd ../
+mkdir backend
+cd backend
+npm init -y
+npm install express socket.io jsonwebtoken bcryptjs cors dotenv
+npm install -D nodemon typescript @types/node
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <h4><span class="step-number">2</span>Database Setup</h4>
+                        <p>Set up PostgreSQL for user data and MongoDB for chat history</p>
+                        <div class="code-block">
+# Install database dependencies
+npm install pg mongodb redis
+npm install -D @types/pg
+
+# Database connection setup in backend/config/database.js
+const { Pool } = require('pg');
+const { MongoClient } = require('mongodb');
+
+const pgPool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: 5432,
+});
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">3</span>Basic Authentication</h4>
+                        <p>Implement user registration, login, and JWT token management</p>
+                        <div class="code-block">
+// backend/routes/auth.js
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+
+router.post('/register', async (req, res) => {
+  const { email, password, name } = req.body;
+  // Hash password, save user, return JWT
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  // Verify credentials, return JWT
+});
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 2: Core Chat System -->
+            <div class="phase">
+                <div class="phase-header phase2">
+                    <span>Phase 2: Core Chat System (Week 3-4)</span>
+                    <span>💬</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step">
+                        <h4><span class="step-number">4</span>Real-time Chat Infrastructure</h4>
+                        <p>Set up Socket.io for real-time messaging between user and AI</p>
+                        <div class="code-block">
+// backend/server.js
+const io = require('socket.io')(server, {
+  cors: { origin: "http://localhost:3000" }
+});
+
+io.on('connection', (socket) => {
+  socket.on('user-message', async (data) => {
+    // Process user message
+    // Send to AI service
+    // Return AI response
+    socket.emit('ai-response', aiResponse);
+  });
+});
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">5</span>AI Integration</h4>
+                        <p>Connect to OpenAI API or Claude for conversational AI</p>
+                        <div class="code-block">
+// backend/services/aiService.js
+const OpenAI = require('openai');
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+async function generateResponse(userMessage, userProfile) {
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      {
+        role: "system",
+        content: `You are a friendly AI companion boy. You suggest activities like games, parks, restaurants. If user is married, suggest couple spots. Be emotionally supportive.`
+      },
+      { role: "user", content: userMessage }
+    ],
+  });
+  
+  return completion.choices[0].message.content;
+}
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">6</span>Frontend Chat Interface</h4>
+                        <p>Build the split-screen UI with chat on the right side</p>
+                        <div class="code-block">
+// frontend/src/components/ChatInterface.tsx
+import React, { useState, useEffect } from 'react';
+import io from 'socket.io-client';
+
+const ChatInterface: React.FC = () => {
+  const [socket] = useState(() => io('http://localhost:5000'));
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [inputText, setInputText] = useState('');
+
+  const sendMessage = () => {
+    socket.emit('user-message', { text: inputText });
+    setMessages(prev => [...prev, { text: inputText, sender: 'user' }]);
+    setInputText('');
+  };
+
+  return (
+    &lt;div className="flex h-screen"&gt;
+      {/* AI Avatar Section - Left */}
+      &lt;div className="w-1/2 bg-gradient-to-br from-blue-400 to-purple-600"&gt;
+        {/* Avatar will go here */}
+      &lt;/div&gt;
+      
+      {/* Chat Section - Right */}
+      &lt;div className="w-1/2 flex flex-col"&gt;
+        &lt;div className="flex-1 overflow-y-auto p-4"&gt;
+          {messages.map((msg, idx) => (
+            &lt;div key={idx} className={`mb-4 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}&gt;
+              &lt;span className="bg-blue-500 text-white px-4 py-2 rounded-lg"&gt;
+                {msg.text}
+              &lt;/span&gt;
+            &lt;/div&gt;
+          ))}
+        &lt;/div&gt;
+        
+        &lt;div className="p-4 border-t"&gt;
+          &lt;input
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            className="w-full px-4 py-2 border rounded-lg"
+            placeholder="Type your message..."
+          /&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 3: Avatar & Voice -->
+            <div class="phase">
+                <div class="phase-header phase3">
+                    <span>Phase 3: Avatar & Voice System (Week 5-7)</span>
+                    <span>🎭</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step">
+                        <h4><span class="step-number">7</span>3D Avatar Setup</h4>
+                        <p>Implement 3D boy character with Three.js</p>
+                        <div class="code-block">
+// frontend/src/components/Avatar.tsx
+import * as THREE from 'three';
+import { useEffect, useRef } from 'react';
+
+const Avatar: React.FC = () => {
+  const mountRef = useRef&lt;HTMLDivElement&gt;(null);
+
+  useEffect(() => {
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    
+    // Load boy character model
+    // Add lighting
+    // Position camera
+    
+    if (mountRef.current) {
+      mountRef.current.appendChild(renderer.domElement);
+    }
+
+    return () => {
+      if (mountRef.current) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
+    };
+  }, []);
+
+  return &lt;div ref={mountRef} className="w-full h-full" /&gt;;
+};
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">8</span>Text-to-Speech Integration</h4>
+                        <p>Add voice synthesis with ElevenLabs or Azure Speech</p>
+                        <div class="code-block">
+// backend/services/voiceService.js
+const axios = require('axios');
+
+async function generateSpeech(text) {
+  const response = await axios.post('https://api.elevenlabs.io/v1/text-to-speech/VOICE_ID', {
+    text: text,
+    model_id: "eleven_monolingual_v1",
+    voice_settings: {
+      stability: 0.5,
+      similarity_boost: 0.5
+    }
+  }, {
+    headers: {
+      'Accept': 'audio/mpeg',
+      'xi-api-key': process.env.ELEVENLABS_API_KEY,
+      'Content-Type': 'application/json'
+    },
+    responseType: 'arraybuffer'
+  });
+  
+  return response.data;
+}
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">9</span>Lip Sync Animation</h4>
+                        <p>Synchronize mouth movements with speech audio</p>
+                        <div class="code-block">
+// frontend/src/utils/lipSync.ts
+export class LipSyncAnimator {
+  private audioContext: AudioContext;
+  private analyzer: AnalyserNode;
+
+  constructor() {
+    this.audioContext = new AudioContext();
+    this.analyzer = this.audioContext.createAnalyser();
+  }
+
+  async animateWithAudio(audioBuffer: ArrayBuffer, avatarMouth: THREE.Object3D) {
+    const audioBufferSource = this.audioContext.createBufferSource();
+    const decodedAudio = await this.audioContext.decodeAudioData(audioBuffer);
+    
+    audioBufferSource.buffer = decodedAudio;
+    audioBufferSource.connect(this.analyzer);
+    this.analyzer.connect(this.audioContext.destination);
+    
+    // Analyze audio frequency data
+    // Map to mouth opening/closing animations
+    this.startLipSyncAnimation(avatarMouth);
+    
+    audioBufferSource.start();
+  }
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 4: Smart Recommendations -->
+            <div class="phase">
+                <div class="phase-header phase4">
+                    <span>Phase 4: Activity Recommendations (Week 8-9)</span>
+                    <span>📍</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step">
+                        <h4><span class="step-number">10</span>Location Services</h4>
+                        <p>Integrate Google Places API for local recommendations</p>
+                        <div class="code-block">
+// backend/services/locationService.js
+const axios = require('axios');
+
+async function getNearbyPlaces(lat, lng, type, userProfile) {
+  const response = await axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json', {
+    params: {
+      location: `${lat},${lng}`,
+      radius: 5000,
+      type: type, // restaurant, park, amusement_park
+      key: process.env.GOOGLE_PLACES_API_KEY
+    }
+  });
+
+  // Filter based on user preferences and relationship status
+  return filterRecommendations(response.data.results, userProfile);
+}
+
+function filterRecommendations(places, userProfile) {
+  if (userProfile.relationshipStatus === 'married') {
+    // Prioritize romantic spots, couple activities
+    return places.filter(place => 
+      place.types.includes('restaurant') || 
+      place.types.includes('park') ||
+      place.name.toLowerCase().includes('couple')
+    );
+  }
+  
+  return places;
+}
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">11</span>Recommendation Engine</h4>
+                        <p>Build ML-based recommendation system</p>
+                        <div class="code-block">
+// backend/services/recommendationService.js
+class RecommendationEngine {
+  async generateRecommendations(userProfile, conversationContext) {
+    const { location, relationshipStatus, interests, pastActivities } = userProfile;
+    
+    // Activity categories
+    const activities = {
+      games: await this.findGameCenters(location),
+      parks: await this.findParks(location),
+      restaurants: await this.findRestaurants(location, relationshipStatus),
+      wandering: await this.findWanderingSpots(location)
+    };
+
+    // If married, add couple-specific recommendations
+    if (relationshipStatus === 'married') {
+      activities.coupleSpots = await this.findCoupleActivities(location);
+      activities.honeymoonPlaces = await this.findHoneymoonDestinations(location);
+    }
+
+    return this.personalizeRecommendations(activities, userProfile);
+  }
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Phase 5: Polish & Deploy -->
+            <div class="phase">
+                <div class="phase-header phase5">
+                    <span>Phase 5: Polish & Deployment (Week 10-12)</span>
+                    <span>🚀</span>
+                </div>
+                <div class="phase-content">
+                    <div class="step">
+                        <h4><span class="step-number">12</span>Emotional Intelligence</h4>
+                        <p>Add sentiment analysis and emotional expressions</p>
+                        <div class="code-block">
+// backend/services/emotionService.js
+const natural = require('natural');
+
+function analyzeSentiment(text) {
+  const sentiment = natural.SentimentAnalyzer.getSentiment(
+    natural.WordTokenizer.tokenize(text.toLowerCase())
+  );
+  
+  if (sentiment > 0.3) return 'happy';
+  if (sentiment < -0.3) return 'sad';
+  if (text.includes('?')) return 'curious';
+  return 'neutral';
+}
+
+function getAvatarExpression(emotion) {
+  const expressions = {
+    happy: { eyebrows: 0.8, mouth: 0.9, eyes: 0.7 },
+    sad: { eyebrows: -0.5, mouth: -0.6, eyes: 0.3 },
+    curious: { eyebrows: 0.6, mouth: 0.2, eyes: 0.9 },
+    neutral: { eyebrows: 0, mouth: 0, eyes: 0.5 }
+  };
+  
+  return expressions[emotion] || expressions.neutral;
+}
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">13</span>Testing & Optimization</h4>
+                        <p>Performance testing, bug fixes, and user experience improvements</p>
+                        <div class="code-block">
+# Install testing dependencies
+npm install -D jest @testing-library/react @testing-library/jest-dom
+
+# Run tests
+npm test
+
+# Performance testing
+npm install -D lighthouse webpack-bundle-analyzer
+
+# Load testing for real-time chat
+npm install -D artillery
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <h4><span class="step-number">14</span>Deployment</h4>
+                        <p>Deploy to AWS with Docker containers</p>
+                        <div class="code-block">
+# Dockerfile for backend
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 5000
+CMD ["npm", "start"]
+
+# Docker Compose for local development
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=postgres
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=yourpassword
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <h3>📅 Development Timeline</h3>
+                <div class="timeline-item">
+                    <div class="timeline-icon">1-2</div>
+                    <div>
+                        <strong>Weeks 1-2:</strong> Project setup, database, basic auth
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">3-4</div>
+                    <div>
+                        <strong>Weeks 3-4:</strong> Real-time chat, AI integration, basic UI
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">5-7</div>
+                    <div>
+                        <strong>Weeks 5-7:</strong> 3D avatar, voice synthesis, lip-sync
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">8-9</div>
+                    <div>
+                        <strong>Weeks 8-9:</strong> Location services, recommendation engine
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">10-12</div>
+                    <div>
+                        <strong>Weeks 10-12:</strong> Emotional intelligence, testing, deployment
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="resources">
+                <h3>📚 Essential Resources & APIs</h3>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h4>AI Services</h4>
+                        <p><strong>OpenAI API:</strong> $20/month for GPT-4 access<br>
+                        <strong>Claude API:</strong> Alternative AI service<br>
+                        <strong>Hugging Face:</strong> Open-source models</p>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Voice & Avatar</h4>
+                        <p><strong>ElevenLabs:</strong> $22/month for voice synthesis<br>
+                        <strong>Ready Player Me:</strong> Free 3D avatars<br>
+                        <strong>Three.js:</strong> Free 3D library</p>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Location Services</h4>
+                        <p><strong>Google Places API:</strong> $0.017 per request<br>
+                        <strong>Foursquare API:</strong> Alternative option<br>
+                        <strong>MapBox:</strong> For mapping features</p>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Infrastructure</h4>
+                        <p><strong>AWS Free Tier:</strong> First year free<br>
+                        <strong>Vercel:</strong> Free frontend hosting<br>
+                        <strong>Railway:</strong> Simple backend deployment</p>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Development Tools</h4>
+                        <p><strong>VS Code:</strong> Free IDE<br>
+                        <strong>Postman:</strong> API testing<br>
+                        <strong>Git/GitHub:</strong> Version control</p>
+                    </div>
+                    <div class="resource-card">
+                        <h4>Learning Resources</h4>
+                        <p><strong>Three.js Journey:</strong> 3D web development<br>
+                        <strong>React Docs:</strong> Official React guide<br>
+                        <strong>Socket.io Docs:</strong> Real-time communication</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add progressive reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const phases = document.querySelectorAll('.phase');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            phases.forEach((phase, index) => {
+                phase.style.opacity = '0';
+                phase.style.transform = 'translateY(30px)';
+                phase.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(phase);
+            });
+
+            // Add click handlers for interactive elements
+            document.querySelectorAll('.step').forEach(step => {
+                step.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateX(5px)';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
